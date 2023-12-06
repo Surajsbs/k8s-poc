@@ -1,0 +1,20 @@
+server:
+  port: 9002
+  servlet:
+    context-path: /api/emp
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:h2:mem:user
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: null
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+      
+dept-service:
+  save-url: http://localhost:9001/api/dept/check
+  fetch-url: http://localhost:9001/api/dept

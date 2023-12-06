@@ -1,0 +1,35 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: emp-service
+spec:
+  selector:
+    app: emp-service
+  ports:
+    - protocol: TCP
+      port: 9002
+      nodePort: 31002
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: emp-service
+ labels:
+  app: emp-service
+  rel: stable
+spec:
+ selector:
+  matchLabels:
+    app: emp-service
+ template:
+  metadata:
+   labels:
+    app: emp-service
+  spec:
+   containers:
+   - name: emp-service
+     image: surajsbs/emp-service:1.2
+     ports:
+     - containerPort: 9002
+
